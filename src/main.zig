@@ -5,7 +5,7 @@ const fs = std.fs;
 const path = fs.path;
 
 pub fn main() anyerror!void {
-    var map = std.StringHashMap([]u8).init(std.heap.c_allocator);
+    var context = std.StringHashMap([]u8).init(std.heap.c_allocator);
     var arg_it = process.args();
 
     _ = arg_it.skip();
@@ -34,10 +34,10 @@ pub fn main() anyerror!void {
 
     std.debug.warn("{}\n", .{joined});
 
-    _ = try map.put("name", name);
-    _ = try map.put("lowerName", try toLowerCaseAscii(name));
-    _ = try map.put("package", package);
-    _ = try map.put("java_version", java_version);
+    _ = try context.put("name", name);
+    _ = try context.put("lowerName", try toLowerCaseAscii(name));
+    _ = try context.put("package", package);
+    _ = try context.put("java_version", java_version);
 
     var pomTemplate = try loadTemplate("../pom.xml.template");
     var javaTemplate = try loadTemplate("../Main.java.template");
@@ -46,8 +46,8 @@ pub fn main() anyerror!void {
     try current.makePath(joined);
     var javaFile = try (try current.openDirList(joined)).createFile("Main.java", .{});
     var pomFile = try (try current.openDirList(name)).createFile("pom.xml", .{});
-    try javaFile.writeAll(try writeTemplate(javaTemplate, map));
-    try pomFile.writeAll(try writeTemplate(pomTemplate, map));
+    try javaFile.writeAll(try writeTemplate(javaTemplate, context));
+    try pomFile.writeAll(try writeTemplate(pomTemplate, context));
 }
 
 pub fn toLowerCaseAscii(string: []u8) ![]u8 {
