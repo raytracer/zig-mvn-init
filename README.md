@@ -1,4 +1,4 @@
-# mvn-init
+# zig-mvn-init
 
 A very basic maven project initializer (a port of the rust version see [here](https://github.com/raytracer/mvn-init)). Creates a new mvn project that
 
