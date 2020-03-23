@@ -8,4 +8,4 @@ A very basic maven project initializer (a port of the rust version see [here](ht
 
 Takes three parameters `mvn-init <project-name> <package> <java-version` e.g. `mvn-init HelloWorld de.olyro 11`.
 
-Build via `cargo build`.
+Build via `zig build`.
