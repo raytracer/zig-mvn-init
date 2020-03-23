@@ -28,7 +28,7 @@ pub fn main() anyerror!void {
         "src",
         "main",
         "java",
-        try replaceAscii(package, '.', '/'),
+        try replaceAscii(package, '.', path.sep),
         try toLowerCaseAscii(name),
     });
 
