@@ -1,6 +1,6 @@
 # mvn-init
 
-A very basic maven project initializer. Creates a new mvn project that
+A very basic maven project initializer (a port of the rust version see [here](https://github.com/raytracer/mvn-init)). Creates a new mvn project that
 
 - builds a .jar including dependencies on `mvn install`
 - makes execution possible via `mvn exec:exec`
