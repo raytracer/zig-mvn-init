@@ -44,8 +44,8 @@ pub fn main() anyerror!void {
 
     var current = fs.cwd();
     try current.makePath(joined);
-    var javaFile = try (try current.openDirList(joined)).createFile("Main.java", .{});
-    var pomFile = try (try current.openDirList(name)).createFile("pom.xml", .{});
+    var javaFile = try (try current.openDir(joined, .{})).createFile("Main.java", .{});
+    var pomFile = try (try current.openDir(name, .{})).createFile("pom.xml", .{});
     try javaFile.writeAll(try writeTemplate(javaTemplate, context));
     try pomFile.writeAll(try writeTemplate(pomTemplate, context));
 }
